@@ -38,11 +38,19 @@ namespace MVCWarehouse.Repositories
         {
             return context.Items.Where(item => item.Price.Equals(Price));
         }
-
-        public IEnumerable<StockItem> GetItemByBoth(string Name, double Price)
+ /*       
+        public IEnumerable<StockItem> GetItemByBoth (string Name, double Price)
         {
-            return context.Items.Where(item => item.Price.Equals(Price));
-                   context.Items.Where(item => item.Name.Contains(Name));
+            return context.Items.Where
+                (
+                item => item.Name.Contains(Name),
+                item => item.Price.Equals(Price)
+                );
+        }
+*/
+        public IEnumerable<StockItem> GetItemByArtNr(int ArticleNumber)
+        {
+            return context.Items.Where(item => item.ArticleNumber.Equals(ArticleNumber));
         }
     }
 }

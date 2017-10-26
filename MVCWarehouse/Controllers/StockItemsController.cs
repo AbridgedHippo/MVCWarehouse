@@ -24,8 +24,10 @@ namespace MVCWarehouse.Controllers
         }
         
         // GET: StockItems
-        public ActionResult Index(string Name = "", double Price = 0)
+        public ActionResult Index(string Name = "", double Price = 0, int ArticleNumber = 0)
         {
+            if (ArticleNumber > 0)
+                return View(repo.GetItemByArtNr(ArticleNumber));
             if (Price > 0)
                 return View(repo.GetItemByPrice(Price));
             else if (Name == "")
