@@ -24,13 +24,30 @@ namespace MVCWarehouse.Controllers
         }
         
         // GET: StockItems
-        public ActionResult Index(string Name = "")
+        public ActionResult Index(string Name = "", double Price = 0)
         {
-            if (Name == "")
+            if (Price > 0)
+                return View(repo.GetItemByPrice(Price));
+            else if (Name == "")
                 return View(db.Items.ToList());
+
             else
                 return View(repo.GetItemByName(Name));
+        }
 
+//        public ActionResult Index(string Name = "", double Price = 0)
+//        {
+//            var stockItem =
+//                from n in repo.GetItemByName(Name)
+//                where Name == n.Name || Price == n.Price
+//                select n;
+//                View(GetItemByBoth(Name, Price));
+//        }
+
+
+        public ActionResult PIndex(double Price)
+        {
+                return View(repo.GetItemByPrice(Price));
         }
 
         public ActionResult GetItemByName(string name = "")

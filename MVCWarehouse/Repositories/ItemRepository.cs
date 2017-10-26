@@ -33,5 +33,16 @@ namespace MVCWarehouse.Repositories
         {
             return context.Items.Where(item => item.Name.Contains(Name));
         }
+
+        public IEnumerable<StockItem> GetItemByPrice(double Price)
+        {
+            return context.Items.Where(item => item.Price.Equals(Price));
+        }
+
+        public IEnumerable<StockItem> GetItemByBoth(string Name, double Price)
+        {
+            return context.Items.Where(item => item.Price.Equals(Price));
+                   context.Items.Where(item => item.Name.Contains(Name));
+        }
     }
 }
